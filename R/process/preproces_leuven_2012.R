@@ -1,11 +1,3 @@
-library(dplyr)
-
-list.files("Data")
-
-# prepare data FEEL Study
-data <- read.csv("Data/data_Leuven_emotions_in_daily_life_2012.csv")
-names(data)
-
 # recode and select part 1
 data <- data |> mutate(
   age = AGE_BL,
@@ -70,61 +62,3 @@ data <- data |> filter(gender != "other") |>
 data_pp <- data_pp |> filter(gender != "other") |>
   mutate(m_f = ifelse(gender == "male", .5, -.5),
          type = "binary")
-
-
-
-saveRDS(data_pp, "Data/data_pp_leuven2012.RDS")
-saveRDS(data, "Data/data_leuven2012.RDS")
-
-
-
-if(FALSE){
-  # test model
-  library(lmerTest)
-
-  fit <- glmer(er ~ m_f * (neg_aff_pm + neg_aff_pmc_lag) +
-                 (1 | ppID),
-               data = data,
-               family = binomial)
-
-
-  fit_rs <- glmer(er ~ m_f * (neg_aff_pm + neg_aff_pmc_lag) +
-                    (1 + neg_aff_pm + neg_aff_pmc_lag | ppID),
-                  data = data,
-                  family = binomial)
-
-  anova(fit, fit_rs)
-  summary(fit_rs)
-
-
-  resid <- residuals(fit_rs)
-  hist(resid)
-  performance::check_model(fit_rs)
-
-
-
-
-
-  # beta regression
-  library(glmmTMB)
-
-  fitb <- glmmTMB(er_b ~ m_f * (neg_aff_pm +neg_aff_pmc + neg_aff_pmc_lag) +
-                    (1 | ppID),
-                  data = data,
-                  family = beta_family(link = "logit"))
-
-
-  fitb_rs <- glmmTMB(er_b ~ m_f * (neg_aff_pm + neg_aff_pmc_lag) +
-                       (1 + neg_aff_pm + neg_aff_pmc_lag| ppID),
-                     data = data,
-                     family = beta_family(link = "logit"))
-
-
-  anova(fitb, fitb_rs)
-  summary(fitb_rs)
-
-  residb <- residuals(fitb_rs)
-  hist(residb)
-
-  performance::check_model(fitb_rs)
-}

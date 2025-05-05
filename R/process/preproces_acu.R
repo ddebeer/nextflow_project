@@ -1,28 +1,3 @@
-library(dplyr)
-
-# get arguments
-input <- commandArgs(trailingOnly = TRUE)
-data_path <- input[1]
-output_dir <- input[2]
-
-# prepare data FEEL Study
-data <- read.csv(data_path)
-names(data)
-
-# include:
-# 1. age
-# 2. gender
-# 3. emotion regulation questionnaire (erq) if available
-# 4. negative emotion (average of negative emotions)
-# 5. sad
-# 6. anger
-# 7. stress
-
-# check:
-# 1. emotions on 0-1 scale using POMS
-# 2. person mean center time variant vars
-
-
 # recode and select part 1
 data <- data |> mutate(
   age = AGE_BL,
@@ -88,8 +63,5 @@ data_pp <- data_pp |> filter(gender != "other") |>
          type = "cont")
 
 
-
-saveRDS(data_pp, paste0(output_dir, "/data_pp_acu.RDS"))
-saveRDS(data, paste0(output_dir, "/data_acu.RDS"))
 
 

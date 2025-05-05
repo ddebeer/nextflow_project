@@ -7,13 +7,14 @@ process preprocess {
   tag "${dataset}"
 
   input:
-    val(input.file)
+    tuple value(dataset) file(input_path)
 
   output:
-    // path('*_fastqc.{zip,html}')
+    path('*.RDS')
 
   script:
     """
+    ${$launchdir}/R/preprocess.R ${dataset} ${input_path}
 
     """
 }
