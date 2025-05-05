@@ -7,14 +7,14 @@ process preprocess {
   tag "${dataset}"
 
   input:
-    tuple val(dataset) path(input_path)
+    tuple val(dataset), path(input)
 
   output:
     path('*.RDS')
 
   script:
     """
-    ${$launchdir}/R/preprocess.R ${dataset} ${input_path}
+    ${$launchdir}/R/preprocess.R ${dataset} ${input}
 
     """
 }
