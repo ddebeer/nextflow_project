@@ -2,7 +2,7 @@
 
 // set default input parameters (these can be altered by calling their flag on the command line, e.g., nextflow run main.nf --reads 'data2/*_R{1,2}.fastq')
 params.indir = "${launchDir}/input"
-params.inputfile = "input.csv"
+params.inputfile = "${launchDir}/input/input.csv"
 params.datadir = "${launchDir}/data"
 params.outdir = "${launchDir}/output"
 
@@ -17,14 +17,14 @@ workflow {
 
     INPUT PARAMETERS:
         - input directory : ${params.indir}
-        - input file: ${params.indir}/${params.inputfile}
+        - input file: ${params.inputfile}
         - data directory : ${params.datadir}
         - output directory : ${params.outdir}
 
     """.stripIndent()
 
     // read input csv-file
-    def input = Channel.value('params.indir/params.inputfile', checkIfExists:true)
+    def input = Channel.fromPath(params.inputfile, checkIfExists:true)
                        .splitCsv(header:true)
                        .view()
 
