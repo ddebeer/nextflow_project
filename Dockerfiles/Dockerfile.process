@@ -1,0 +1,4 @@
+FROM rocker/r-ver:4.5.0@sha256:b449ce7eadda9f3aeebe9d0f21a17d051e522da9720ef8b147d1cfa12a0b77a5
+
+# install dplyr
+RUN  R -q -e 'install.packages("dplyr")'
