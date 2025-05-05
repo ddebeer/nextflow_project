@@ -14,7 +14,7 @@ process preprocess {
 
   script:
     """
-    ${$launchdir}/R/preprocess.R ${dataset} ${input}
+    $./R/preprocess.R ${dataset} ${input}
 
     """
 }
