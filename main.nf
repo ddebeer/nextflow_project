@@ -29,7 +29,7 @@ workflow {
                           .view()
 
 
-    //preprocess(datasets)
+    preprocess(datasets)
 
 
 
