@@ -24,7 +24,8 @@ workflow {
     // read input csv-file
     def input = Channel.fromPath(params.inputfile, checkIfExists:true)
                        .splitCsv(header:true)
-                       .map{row -> tuple(row[0], params.datadir/row[0])}
+                       .map{row -> row[0]}
+                       .map{dataset -> tuple(dataset, "${params.datadir}/dataset")}
                        .view()
 
 
