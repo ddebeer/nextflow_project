@@ -32,7 +32,7 @@ workflow {
 
     INPUT PARAMETERS:
         - input directory : ${params.indir}
-        - input file: ${input.csv}
+        - input file: ${params.inputfile}
         - data directory : ${params.datadir}
         - output directory : ${params.outdir}
 
@@ -40,7 +40,7 @@ workflow {
     """.stripIndent()
 
     // read input csv-file
-    def input = Channel.fromFile('${inputdir}/${inputfile}', checkIfExists:true)
+    def input = Channel.fromFile('${params.inputdir}/${params.inputfile}', checkIfExists:true)
                        .splitCsv(header:true)
                        .view()
 
