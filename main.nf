@@ -29,7 +29,7 @@ workflow {
     def path = Channel.value('${params.datadir}/data_raw/data_')
                       .view()
 
-    def test0 = input.map { row -> row.dataset}
+    def test0 = datasets.map { row -> row.dataset}
                      .view()
 
     def test = test0.map { dataset -> tuple(dataset, file('${params.datadir}/data_raw/data_$dataset.csv')) }
