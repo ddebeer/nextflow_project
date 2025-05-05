@@ -24,7 +24,9 @@ workflow {
     """.stripIndent()
 
     // read input csv-file
-
+    def input = Channel.fromPath('${params.indir}/${params.inputfile}', checkIfExists:true)
+                       .splitCsv(header:true)
+                       .view()
 
 
 
