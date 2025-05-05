@@ -1,4 +1,5 @@
 #!/usr/bin/env Rscript
+
 library("dplyr")
 
 # collect two trailing arguments: dataset and inputpath
