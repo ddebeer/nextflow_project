@@ -8,7 +8,7 @@ params.outdir = "${launchDir}/output"
 
 
 // include processes and subworkflows to make them available for use in this script
-
+include { preprocess } from "./modules/preprocess"
 
 
 workflow {
@@ -17,7 +17,7 @@ workflow {
 
     INPUT PARAMETERS:
         - input directory : ${params.indir}
-        - input file: ${params.inputfile}
+        - input file: ${params.indir}/${params.inputfile}
         - data directory : ${params.datadir}
         - output directory : ${params.outdir}
 
