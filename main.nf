@@ -32,8 +32,6 @@ workflow {
                       .view()
 
 
-    def test = test0.map { dataset -> tuple(dataset, file('${params.datadir}/data_raw/data_$dataset.csv')) }
-                    .view()
 
     //preprocess(input)
 
