@@ -7,7 +7,7 @@ process preprocess {
   tag "${dataset}"
 
   input:
-    tuple val(dataset) file(input_path)
+    tuple val(dataset) path(input_path)
 
   output:
     path('*.RDS')
