@@ -22,7 +22,7 @@ workflow {
     """.stripIndent()
 
     // read input csv-file
-    def datasets = Channel.fromPath(params.inputfile, checkIfExists:true)
+    def dataset = Channel.fromPath(params.inputfile, checkIfExists:true)
                           .splitCsv(header:true)
                           .map { row -> row.dataset}
                           .view()
