@@ -40,7 +40,7 @@ workflow {
     """.stripIndent()
 
     // read input csv-file
-    def input = Channel.fromPath($inputdir/$inputfile, checkIfExists:true)
+    def input = Channel.fromFile('${inputdir}/${inputfile}', checkIfExists:true)
                        .splitCsv(header:true)
                        .view()
 
