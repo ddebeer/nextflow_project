@@ -27,11 +27,9 @@ workflow {
                           .map { row -> row.dataset}
                           .view()
 
-    def path = Channel.value('${params.datadir}/data_raw/data_')
-                      .concat(dataset)
-                      .view()
 
-
+    def test = dataset.map { dataset -> tuple(dataset, file('${params.datadir}/data_raw/data_${dataset}.csv')) }
+                    .view()
 
     //preprocess(input)
 
