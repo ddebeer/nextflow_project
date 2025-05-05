@@ -14,6 +14,7 @@ process preprocess {
 
   script:
     """
+    echo ${dataset}
     preprocess.R ${dataset} ${input}
 
     """

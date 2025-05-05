@@ -2,7 +2,7 @@
 
 library("dplyr")
 
-# collect two trailing arguments: dataset and inputpath
+# collect two trailing arguments: dataset and input_path
 args <- commandArgs(trailingOnly=TRUE)
 dataset <- args[1]
 input_path <- args[2]
