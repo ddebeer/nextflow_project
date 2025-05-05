@@ -2,7 +2,7 @@
 
 // set default input parameters (these can be altered by calling their flag on the command line, e.g., nextflow run main.nf --reads 'data2/*_R{1,2}.fastq')
 params.indir = "${launchDir}/input"
-params.inputfile = "$input.csv"
+params.inputfile = "input.csv"
 params.datadir = "${launchDir}/data"
 params.outdir = "${launchDir}/output"
 
@@ -14,21 +14,6 @@ params.outdir = "${launchDir}/output"
 workflow {
     // Set a header made using https://patorjk.com/software/taag (but be sure to escape characters such as dollar signs and backslashes, e.g., '$'=> '\$' and '\' =>'\\')
     log.info """
-    ==============================================================================================
-
-                                            \$\$\\                     \$\$\\ \$\$\\
-                                            \\__|                    \$\$ |\\__|
-    \$\$\$\$\$\$\\\$\$\$\$\\  \$\$\\   \$\$\\        \$\$\$\$\$\$\\  \$\$\\  \$\$\$\$\$\$\\   \$\$\$\$\$\$\\  \$\$ |\$\$\\ \$\$\$\$\$\$\$\\   \$\$\$\$\$\$\\
-    \$\$  _\$\$  _\$\$\\ \$\$ |  \$\$ |      \$\$  __\$\$\\ \$\$ |\$\$  __\$\$\\ \$\$  __\$\$\\ \$\$ |\$\$ |\$\$  __\$\$\\ \$\$  __\$\$\\
-    \$\$ / \$\$ / \$\$ |\$\$ |  \$\$ |      \$\$ /  \$\$ |\$\$ |\$\$ /  \$\$ |\$\$\$\$\$\$\$\$ |\$\$ |\$\$ |\$\$ |  \$\$ |\$\$\$\$\$\$\$\$ |
-    \$\$ | \$\$ | \$\$ |\$\$ |  \$\$ |      \$\$ |  \$\$ |\$\$ |\$\$ |  \$\$ |\$\$   ____|\$\$ |\$\$ |\$\$ |  \$\$ |\$\$   ____|
-    \$\$ | \$\$ | \$\$ |\\\$\$\$\$\$\$\$ |      \$\$\$\$\$\$\$  |\$\$ |\$\$\$\$\$\$\$  |\\\$\$\$\$\$\$\$\\ \$\$ |\$\$ |\$\$ |  \$\$ |\\\$\$\$\$\$\$\$\\
-    \\__| \\__| \\__| \\____\$\$ |      \$\$  ____/ \\__|\$\$  ____/  \\_______|\\__|\\__|\\__|  \\__| \\_______|
-                  \$\$\\   \$\$ |      \$\$ |          \$\$ |
-                  \\\$\$\$\$\$\$  |      \$\$ |          \$\$ |
-                   \\______/       \\__|          \\__|
-
-    ==============================================================================================
 
     INPUT PARAMETERS:
         - input directory : ${params.indir}
@@ -36,13 +21,10 @@ workflow {
         - data directory : ${params.datadir}
         - output directory : ${params.outdir}
 
-    ==============================================================================================
     """.stripIndent()
 
     // read input csv-file
-    def input = Channel.fromFile('${params.inputdir}/${params.inputfile}', checkIfExists:true)
-                       .splitCsv(header:true)
-                       .view()
+
 
 
 
