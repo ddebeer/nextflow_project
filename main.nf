@@ -22,16 +22,14 @@ workflow {
     """.stripIndent()
 
     // read input csv-file
-    def dataset = Channel.fromPath(params.inputfile, checkIfExists:true)
+    def datasets = Channel.fromPath(params.inputfile, checkIfExists:true)
                           .splitCsv(header:true)
                           .map { row -> row.dataset}
-                          .view()
-
-
-    def test = dataset.map { set -> tuple(set, '${params.datadir}/data_raw/data_' + set + '.csv') }
+                          .map { set -> tuple(set, file('${params.datadir}/data_raw/data_' + set + '.csv')) }
                       .view()
 
-    //preprocess(input)
+
+    preprocess(datasets)
 
 
 
