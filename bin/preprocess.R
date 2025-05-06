@@ -2,7 +2,7 @@
 
 library("dplyr", warn.conflicts = FALSE, quietly = TRUE)
 
-# collect two trailing arguments: dataset and input_path
+# collect three trailing arguments: dataset, input_path, and source_file
 args <- commandArgs(trailingOnly=TRUE)
 dataset <- args[1]
 input_path <- args[2]
@@ -18,4 +18,4 @@ source(source_file)
 
 # save data
 saveRDS(data_pp, "data_pp.RDS")
-saveRDS(data, "data.RDS")
+saveRDS(data, "data_esm.RDS")

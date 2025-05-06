@@ -10,6 +10,7 @@ params.outdir = "${launchDir}/output"
 
 // include processes and subworkflows to make them available for use in this script
 include { preprocess } from "./modules/preprocess"
+include { combine_type as combine_esm; combine_type as combine_pp } from "./modules/combine"
 
 
 workflow {
@@ -34,8 +35,9 @@ workflow {
 
 
     // combine datasets
-    def data_esm = Channel.fromPath(file(params.datadir + '/*/data.RDS'), checkIfExists: true)
-                          .collect()
+    combine_esm("esm", file(params.datadir))
+    combine_pp("pp", file(params.datadir))
+
 
 
 
