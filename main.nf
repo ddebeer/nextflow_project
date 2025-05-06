@@ -37,7 +37,7 @@ workflow {
     // combine datasets
     input = preprocess.out
 
-    input.map{ input -> input[0]}
+    input.map{ files -> file(files[0])}
          .view
 
     //combine_esm("esm", params.datadir)
