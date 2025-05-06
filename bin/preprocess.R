@@ -1,13 +1,13 @@
 #!/usr/bin/env Rscript
 
-library("dplyr")
+library("dplyr", warn.conflicts = FALSE, quietly = TRUE)
 
 # collect two trailing arguments: dataset and input_path
 args <- commandArgs(trailingOnly=TRUE)
 dataset <- args[1]
 input_path <- args[2]
 
-print(getwd())
+message(getwd())
 
 # read the data
 data <- read.csv(input_path)
