@@ -23,13 +23,9 @@ process combine {
 workflow combine_type {
     take:
         type
-        path
+        input
 
     main:
-        def input = Channel.fromPath(file(path + '/*/data_' + type + '.RDS'), checkIfExists: true)
-                           .collect()
-                           .view()
-
         combine(type, input)
 }
 

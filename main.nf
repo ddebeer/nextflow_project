@@ -38,15 +38,13 @@ workflow {
     def input_esm = preprocess.out
                               .map{ files -> file(files[0])}
                               .collect()
-                              .view()
 
     def input_pp = preprocess.out
                              .map{ files -> file(files[1])}
                              .collect()
-                             .view()
 
-    //combine_esm("esm", params.datadir)
-    //combine_pp("pp", params.datadir)
+    combine_esm("esm", input_esm)
+    combine_pp("pp", input_pp)
 
 
 
