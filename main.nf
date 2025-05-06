@@ -35,9 +35,11 @@ workflow {
 
 
     // combine datasets
-    input = preprocess.out.view()
-                   //.collect()
-                   .view()
+    input = preprocess.out
+
+    input.map{ input -> input[0]}
+         .view
+
     //combine_esm("esm", params.datadir)
     //combine_pp("pp", params.datadir)
 
