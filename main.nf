@@ -35,10 +35,15 @@ workflow {
 
 
     // combine datasets
-    input = preprocess.out
+    def input_esm = preprocess.out
+                              .map{ files -> file(files[0])}
+                              .collect
+                              .view()
 
-    input.map{ files -> file(files[0])}
-         .view()
+    def input_pp = preprocess.out
+                             .map{ files -> file(files[1])}
+                             .collect
+                             .view()
 
     //combine_esm("esm", params.datadir)
     //combine_pp("pp", params.datadir)
