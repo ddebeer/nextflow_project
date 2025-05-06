@@ -38,7 +38,7 @@ workflow {
     input = preprocess.out
 
     input.map{ files -> file(files[0])}
-         .view
+         .view()
 
     //combine_esm("esm", params.datadir)
     //combine_pp("pp", params.datadir)
