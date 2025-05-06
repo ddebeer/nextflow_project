@@ -34,7 +34,7 @@ workflow {
 
 
     // combine datasets
-    def data_esm = Channel.fromPath('params.datadir/*/data.RDS', checkIfExists: true)
+    def data_esm = Channel.fromPath(file(params.datadir + '/*/data.RDS'), checkIfExists: true)
                           .view()
 
 
