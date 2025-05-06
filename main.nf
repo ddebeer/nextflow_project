@@ -35,8 +35,8 @@ workflow {
 
 
     // combine datasets
-    combine_esm("esm", file(params.datadir))
-    combine_pp("pp", file(params.datadir))
+    combine_esm("esm", params.datadir)
+    combine_pp("pp", params.datadir)
 
 
 
