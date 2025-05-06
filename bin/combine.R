@@ -8,11 +8,16 @@ args <- commandArgs(trailingOnly=TRUE)
 type <- args[1]
 datasets <- args[2]
 
+print(datasets)
+
+print("\n")
+
 # preprocess datasets
 datasets <- gsub("[", "", datasets, fixed = TRUE)
 datasets <- gsub("]", "", datasets, fixed = TRUE)
 datasets <- unlist(strsplit(datasets, split = ", ", fixed = TRUE))
 
+print(datasets)
 
 # esm data
 if(type == "esm"){
@@ -118,7 +123,8 @@ if(type == "esm"){
   saveRDS(data_pp, "data_pp.RDS")
 
 } else {
-  stop("Incorrect 'type' argument.")
+  saveRDS("test", "test.RDS")
+  #stop("Incorrect 'type' argument.")
 }
 
 
