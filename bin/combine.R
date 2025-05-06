@@ -8,6 +8,11 @@ args <- commandArgs(trailingOnly=TRUE)
 type <- args[1]
 datasets <- args[2]
 
+# preprocess datasets
+datasets <- gsub("[", "", datasets, fixed = TRUE)
+datasets <- gsub("]", "", datasets, fixed = TRUE)
+datasets <- unlist(strsplit(datasets, split = ", ", fixed = TRUE))
+
 
 # esm data
 if(type == "esm"){
