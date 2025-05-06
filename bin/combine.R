@@ -118,7 +118,7 @@ if(type == "esm"){
   saveRDS(data_pp, "data_pp.RDS")
 
 } else {
-  stop("Incorrect 'type' argument."
+  stop("Incorrect 'type' argument.")
 }
 
 
