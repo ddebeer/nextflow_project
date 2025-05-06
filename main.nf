@@ -35,7 +35,7 @@ workflow {
 
 
     // combine datasets
-    input = Channel.fromPath(preprocess.out, checkIfExists: true)
+    input = preprocess.out.view()
                    //.collect()
                    .view()
     //combine_esm("esm", params.datadir)
