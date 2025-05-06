@@ -1,6 +1,7 @@
 #!/usr/bin/env nextflow
 
-// set default input parameters (these can be altered by calling their flag on the command line, e.g., nextflow run main.nf --reads 'data2/*_R{1,2}.fastq')
+// set default input parameters (these can be altered by calling their flag
+//    on the command line, e.g., nextflow run main.nf --<param> '<parameter value>')
 params.inputfile = "${launchDir}/input/input.csv"
 params.datadir = "${launchDir}/data"
 params.outdir = "${launchDir}/output"
