@@ -7,6 +7,8 @@ args <- commandArgs(trailingOnly=TRUE)
 dataset <- args[1]
 input_path <- args[2]
 
+print(getwd())
+
 # read the data
 data <- read.csv(input_path)
 
