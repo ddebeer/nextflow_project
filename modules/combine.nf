@@ -7,7 +7,7 @@ process combine {
 
   input:
     val(type)
-    tuple(input)
+    val(input)
 
   output:
     path('*.RDS')
