@@ -1,4 +1,6 @@
-library(dplyr)
+#!/usr/bin/env Rscript
+
+library("dplyr", warn.conflicts = FALSE, quietly = TRUE)
 
 
 # collect two trailing arguments: type, dataset
