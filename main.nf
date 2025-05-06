@@ -4,6 +4,7 @@
 //    on the command line, e.g., nextflow run main.nf --<param> '<parameter value>')
 params.inputfile = "${launchDir}/input/input.csv"
 params.datadir = "${launchDir}/data"
+params.Rdir = "${launchDir}/R"
 params.outdir = "${launchDir}/output"
 
 
@@ -26,7 +27,7 @@ workflow {
     def datasets = Channel.fromPath(params.inputfile, checkIfExists:true)
                           .splitCsv(header:true)
                           .map { row -> row.dataset }
-                          .map { set -> tuple(set, file(params.datadir + '/data_raw/data_' + set + '.csv')) }
+                          .map { set -> tuple(set, file(params.datadir + '/data_raw/data_' + set + '.csv'), file(params.Rdir + '/process/preproces_' + set + '.R')) }
                           .view()
 
 

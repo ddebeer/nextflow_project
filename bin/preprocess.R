@@ -6,6 +6,7 @@ library("dplyr", warn.conflicts = FALSE, quietly = TRUE)
 args <- commandArgs(trailingOnly=TRUE)
 dataset <- args[1]
 input_path <- args[2]
+source_file <- args[3]
 
 message(getwd())
 
@@ -13,7 +14,7 @@ message(getwd())
 data <- read.csv(input_path)
 
 # do preprocessing
-source(paste0("R/process/preproces_", dataset, ".R"))
+source(source_file)
 
 # save data
 saveRDS(data_pp, "data_pp.RDS")

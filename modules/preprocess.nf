@@ -7,7 +7,7 @@ process preprocess {
   tag "${dataset}"
 
   input:
-    tuple val(dataset), path(input)
+    tuple val(dataset), path(input), path(sourcefile)
 
   output:
     path('*.RDS')
@@ -15,7 +15,7 @@ process preprocess {
   script:
     """
     echo ${dataset}
-    preprocess.R ${dataset} ${input}
+    preprocess.R ${dataset} ${input} ${sourcefile}
 
     """
 }
