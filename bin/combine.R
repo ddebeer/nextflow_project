@@ -16,6 +16,7 @@ print("\n")
 datasets <- gsub("[", "", datasets, fixed = TRUE)
 datasets <- gsub("]", "", datasets, fixed = TRUE)
 datasets <- unlist(strsplit(datasets, split = ", ", fixed = TRUE))
+datasets <- gsub(",", "", datasets, fixed = TRUE)
 
 print(datasets)
 
