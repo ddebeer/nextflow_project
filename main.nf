@@ -28,11 +28,14 @@ workflow {
                           .splitCsv(header:true)
                           .map { row -> row.dataset }
                           .map { set -> tuple(set, file(params.datadir + '/data_raw/data_' + set + '.csv'), file(params.Rdir + '/process/preproces_' + set + '.R')) }
-                          .view()
 
-
+    // preprocess datasets
     preprocess(datasets)
 
+
+    // combine datasets
+    def data_esm = Channel.fromPath(params.datadir + '/data/*/data.RDS')
+                          .view()
 
 
 
