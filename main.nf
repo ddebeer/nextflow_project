@@ -15,7 +15,6 @@ include { combine_type as combine_esm; combine_type as combine_pp } from "./modu
 include { analysis_check } from "./modules/analysis"
 
 workflow {
-    // Set a header made using https://patorjk.com/software/taag (but be sure to escape characters such as dollar signs and backslashes, e.g., '$'=> '\$' and '\' =>'\\')
     log.info """
 
     INPUT PARAMETERS:
@@ -36,26 +35,26 @@ workflow {
 
 
     // combine datasets
-    def input_esm = preprocess.out
-                              .map{ files -> file(files[0])}
-                              .collect()
+    //def input_esm = preprocess.out
+    //                          .map{ files -> file(files[0])}
+    //                          .collect()
 
-    def input_pp = preprocess.out
-                             .map{ files -> file(files[1])}
-                             .collect()
+    //def input_pp = preprocess.out
+    //                         .map{ files -> file(files[1])}
+    //                         .collect()
 
-    combine_esm("esm", input_esm)
-    combine_pp("pp", input_pp)
+    //combine_esm("esm", input_esm)
+    //combine_pp("pp", input_pp)
 
     // do analyses
-    def models = Channel.fromPath(params.modelsfile, checkIfExists:true)
-                        .splitCsv(header:true)
+    //def models = Channel.fromPath(params.modelsfile, checkIfExists:true)
+    //                    .splitCsv(header:true)
 
-    def input_analyses = combine_pp.out
-                                   .combine(models)
-                                   .combine(channel.of(25, 50, 75))
-                                   .map { entry -> tuple(file(entry[0], value(entry[1]), value(entry[2]), value(entry[3])) }
-                                   .view()
+    //def input_analyses = combine_pp.out
+    //                               .combine(models)
+    //                               .combine(channel.of(25, 50, 75))
+    //                               .map { entry -> tuple(file(entry[0], value(entry[1]), value(entry[2]), value(entry[3])) }
+    //                               .view()
 
     //analysis_check(input_analyses)
 
