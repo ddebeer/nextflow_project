@@ -6,7 +6,7 @@ process analysis {
   publishDir "${params.outdir}/bin/${threshold}_${name}", mode: 'copy', overwrite: true
 
   input:
-    tuple (path(data_path), val(name), val(formula), val(threshold))
+    tuple path(data_path), val(name), val(formula), val(threshold)
 
   output:
     path('*.RDS'), emit: path

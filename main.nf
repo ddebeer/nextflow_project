@@ -53,10 +53,10 @@ workflow {
 
     def input_analyses = combine_pp.out
                                    .combine(models)
-                                   .combine(channel.of(25, 50, 75))
+                                   .combine(channel.of(threshold = 25, 50, 75))
                                    .view()
 
-    analysis_check(input_analyses)
+    //analysis_check(input_analyses)
 
 
 
