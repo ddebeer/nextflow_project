@@ -49,8 +49,5 @@ workflow analysis_check {
         analysis(input)
         check(analysis.out.fit)
 
-    emit:
-        analysis.out
-        check.out
 }
 
