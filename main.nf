@@ -3,6 +3,7 @@
 // set default input parameters (these can be altered by calling their flag
 //    on the command line, e.g., nextflow run main.nf --<param> '<parameter value>')
 params.inputfile = "${launchDir}/input/input.csv"
+params.modelsfile = "${launchDir}/input/models.csv"
 params.datadir = "${launchDir}/data"
 params.Rdir = "${launchDir}/R"
 params.outdir = "${launchDir}/output"
@@ -45,6 +46,15 @@ workflow {
 
     combine_esm("esm", input_esm)
     combine_pp("pp", input_pp)
+
+    // do analyses
+    def models = Channel.fromPath(params.modelsfile, checkIfExists:true)
+                        .splitCsv(header:true)
+
+    def input_analyses = combine_pp.out
+                                   .combine(models)
+                                   .combine(channel.of(25, 50, 75))
+                                   .view()
 
 
 

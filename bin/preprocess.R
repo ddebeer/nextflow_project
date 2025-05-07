@@ -8,8 +8,6 @@ dataset <- args[1]
 input_path <- args[2]
 source_file <- args[3]
 
-message(getwd())
-
 # read the data
 data <- read.csv(input_path)
 
