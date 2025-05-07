@@ -20,7 +20,7 @@ process analysis {
 }
 
 
-process checks {
+process check {
   // DIRECTIVES: set the docker container, the directory to output
   container 'ddebeer/r4.5.0_analysis:v02'
   publishDir "${params.outdir}/bin/${threshold}", mode: 'copy', overwrite: true
@@ -46,9 +46,11 @@ workflow analysis_check {
         input
 
     main:
-
         analysis(input)
-
         check(analysis.out.fit)
+
+    emit:
+        analysis.out
+        check.out
 }
 

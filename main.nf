@@ -56,6 +56,8 @@ workflow {
                                    .combine(channel.of(25, 50, 75))
                                    .view()
 
+    analysis_check(input_analyses)
+
 
 
 
