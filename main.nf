@@ -35,16 +35,16 @@ workflow {
 
 
     // combine datasets
-    //def input_esm = preprocess.out
-    //                          .map{ files -> file(files[0])}
-    //                          .collect()
+    def input_esm = preprocess.out
+                              .map{ files -> file(files[0])}
+                              .collect()
 
-    //def input_pp = preprocess.out
-    //                         .map{ files -> file(files[1])}
-    //                         .collect()
+    def input_pp = preprocess.out
+                             .map{ files -> file(files[1])}
+                             .collect()
 
-    //combine_esm("esm", input_esm)
-    //combine_pp("pp", input_pp)
+    combine_esm("esm", input_esm)
+    combine_pp("pp", input_pp)
 
     // do analyses
     //def models = Channel.fromPath(params.modelsfile, checkIfExists:true)
