@@ -3,14 +3,14 @@
 process analysis {
   // DIRECTIVES: set the docker container, the directory to output
   container 'ddebeer/r4.5.0_analysis:v02'
-  publishDir "${params.outdir}/bin/${threshold}", mode: 'copy', overwrite: true
+  publishDir "${params.outdir}/bin/${threshold}_${name}", mode: 'copy', overwrite: true
 
   input:
     tuple (val(data_path), val(name), val(formula), val(threshold))
 
   output:
-    path('*.RDS') emit: path
-    tuple (val(name), val(threshold), path('*.RDS')) emit: fit
+    path('*.RDS'), emit: path
+    tuple (val(name), val(threshold), path('*.RDS')), emit: fit
 
   script:
     """
@@ -23,7 +23,7 @@ process analysis {
 process check {
   // DIRECTIVES: set the docker container, the directory to output
   container 'ddebeer/r4.5.0_analysis:v02'
-  publishDir "${params.outdir}/bin/${threshold}", mode: 'copy', overwrite: true
+  publishDir "${params.outdir}/bin/${threshold}_${name}", mode: 'copy', overwrite: true
 
   input:
     tuple (val(name), val(threshold), path(fit))
