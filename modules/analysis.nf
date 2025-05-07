@@ -6,11 +6,11 @@ process analysis {
   publishDir "${params.outdir}/bin/${threshold}_${name}", mode: 'copy', overwrite: true
 
   input:
-    tuple (val(data_path), val(name), val(formula), val(threshold))
+    tuple (path(data_path), val(name), val(formula), val(threshold))
 
   output:
     path('*.RDS'), emit: path
-    tuple (val(name), val(threshold), path('*.RDS')), emit: fit
+    tuple (val(name), val(threshold), path('*.RDS')), emit: fit_tuple
 
   script:
     """
@@ -47,7 +47,7 @@ workflow analysis_check {
 
     main:
         analysis(input)
-        check(analysis.out.fit)
+        check(analysis.out.fit_tuple)
 
 }
 
