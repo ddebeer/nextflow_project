@@ -12,7 +12,7 @@ params.outdir = "${launchDir}/output"
 // include processes and subworkflows to make them available for use in this script
 include { preprocess } from "./modules/preprocess"
 include { combine_type as combine_esm; combine_type as combine_pp } from "./modules/combine"
-
+include { analysis_check } from "./modules/analysis"
 
 workflow {
     // Set a header made using https://patorjk.com/software/taag (but be sure to escape characters such as dollar signs and backslashes, e.g., '$'=> '\$' and '\' =>'\\')
