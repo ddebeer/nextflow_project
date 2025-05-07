@@ -27,5 +27,8 @@ workflow combine_type {
 
     main:
         combine(type, input)
+
+    emit:
+        combine.out
 }
 
