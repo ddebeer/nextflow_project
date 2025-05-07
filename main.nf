@@ -47,16 +47,16 @@ workflow {
     combine_pp("pp", input_pp)
 
     // do analyses
-    //def models = Channel.fromPath(params.modelsfile, checkIfExists:true)
-    //                    .splitCsv(header:true)
+    def models = Channel.fromPath(params.modelsfile, checkIfExists:true)
+                        .splitCsv(header:true)
 
-    //def input_analyses = combine_pp.out
-    //                               .combine(models)
-    //                               .combine(channel.of(25, 50, 75))
-    //                               .map { entry -> tuple(file(entry[0], value(entry[1]), value(entry[2]), value(entry[3])) }
-    //                               .view()
+    def input_analyses = combine_pp.out
+                                   .combine(models)
+                                   .combine(channel.of(25, 50, 75))
+                                   .map { entry -> tuple(file(entry[0]), value(entry[1]), value(entry[2]), value(entry[3])) }
+                                   .view()
 
-    //analysis_check(input_analyses)
+    analysis_check(input_analyses)
 
 
 
