@@ -9,7 +9,7 @@ threshold <- args[4]
 
 
 # read the data
-data <- readRDS("data_path")
+data <- readRDS(data_path)
 
 
 # create binary outcome

@@ -11,7 +11,7 @@ threshold <- args[3]
 
 
 # read the model
-fit <- readRDS("fit_path")
+fit <- readRDS(fit_path)
 
 if(inherits(fit, "merMod")) {
   tryCatch(
