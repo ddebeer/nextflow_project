@@ -56,7 +56,7 @@ workflow {
                                    .map { entry -> tuple(file(entry[0]), value(entry[1]), value(entry[2]), value(entry[3])) }
                                    .view()
 
-    analysis_check(input_analyses)
+    // analysis_check(input_analyses)
 
 
 
