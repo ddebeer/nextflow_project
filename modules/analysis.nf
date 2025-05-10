@@ -25,7 +25,7 @@ process check {
   publishDir "${params.outdir}/bin/${threshold}_${name}", mode: 'copy', overwrite: true
 
   input:
-    val path(fit)
+    path(fit)
 
 
   output:
