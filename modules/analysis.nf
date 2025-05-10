@@ -10,7 +10,7 @@ process analysis {
 
   output:
     path('*.RDS'), emit: path
-    tuple (val(name), threshold, path('*.RDS')), emit: fit_tuple
+    tuple (val(name), threshold, file('*.RDS')), emit: fit_tuple
 
   script:
     """
