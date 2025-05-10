@@ -1,5 +1,5 @@
 name,formula
-ri,m_f * (neg_aff_pm + neg_aff_pmc_lag) + (1 | ppID) + (1 | study)
-rs1,m_f * (neg_aff_pm + neg_aff_pmc_lag) + (1 + neg_aff_pm + neg_aff_pmc_lag | ppID) + (1 | study
-rs2,m_f * (neg_aff_pm + neg_aff_pmc_lag) + (1 + neg_aff_pm + neg_aff_pmc_lag | ppID) + (1 + neg_aff_pm + neg_aff_pmc_lag | study)
-rs3,m_f * (neg_aff_pm + neg_aff_pmc_lag) + (1 + neg_aff_pm + neg_aff_pmc_lag | ppID) + (1 + m_f + neg_aff_pm + neg_aff_pmc_lag | study)
+ri,m_f*(neg_aff_pm+neg_aff_pmc_lag)+(1|ppID)+(1|study)
+rs1,m_f*(neg_aff_pm+neg_aff_pmc_lag)+(1+neg_aff_pm+neg_aff_pmc_lag|ppID)+(1|study
+rs2,m_f*(neg_aff_pm+neg_aff_pmc_lag)+(1+neg_aff_pm+neg_aff_pmc_lag|ppID)+(1+neg_aff_pm+neg_aff_pmc_lag|study)
+rs3,m_f*(neg_aff_pm+neg_aff_pmc_lag)+(1+neg_aff_pm+neg_aff_pmc_lag|ppID)+(1+m_f+neg_aff_pm+neg_aff_pmc_lag|study)
