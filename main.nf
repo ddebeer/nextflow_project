@@ -53,7 +53,7 @@ workflow {
     def input_analyses = combine_pp.out
                                    .combine(models)
                                    .combine(channel.of(25, 50, 75))
-                                   .map { entry -> tuple(file(entry[0]), entry[1], entry[2], entry[3]) }
+                                   .map { entry -> tuple(file(entry[0]), entry[1][0], entry[1][1], entry[2]) }
                                    .view()
 
     // analysis_check(input_analyses)
