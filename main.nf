@@ -38,10 +38,12 @@ workflow {
     def input_esm = preprocess.out
                               .map{ files -> file(files[0])}
                               .collect()
+                              .view()
 
     def input_pp = preprocess.out
                              .map{ files -> file(files[1])}
                              .collect()
+                             .view()
 
     combine_esm("esm", input_esm)
     combine_pp("pp", input_pp)
@@ -53,10 +55,10 @@ workflow {
     def input_analyses = combine_pp.out
                                    .combine(models)
                                    .combine(channel.of(25, 50, 75))
-                                   .map { entry -> tuple(file(entry[0]), entry[1].name, "formula", entry[2]) }
+                                   .map { entry -> tuple(file(entry[0]), entry[1].name, entry[1].formula, entry[2]) }
                                    .view()
 
-    analysis_check(input_analyses)
+    //analysis_check(input_analyses)
 
 
 

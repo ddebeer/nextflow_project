@@ -15,7 +15,7 @@ data <- readRDS(data_path)
 # create binary outcome
 data$er_bin <- NA
 data$er_bin[data$type == "binary"] <- data$er[data$type == "binary"]
-data$er_bin[data$type == "cont"] <- 1 * (data$er[data$type == "cont"] > threshold)
+data$er_bin[data$type == "cont"] <- (data$er[data$type == "cont"] > threshold) * 1
 
 
 # rescue solution?
