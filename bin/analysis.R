@@ -19,11 +19,11 @@ data$er_bin[data$type == "cont"] <- (data$er[data$type == "cont"] > threshold) *
 
 
 # rescue solution?
-formula <- switch(name,
-      "ri"  = 'm_f*(neg_aff_pm+neg_aff_pmc_lag)+(1|ppID)+(1|study)',
-      "rs1" = 'm_f*(neg_aff_pm+neg_aff_pmc_lag)+(1+neg_aff_pm+neg_aff_pmc_lag|ppID)+(1|study)',
-      "rs2" = 'm_f*(neg_aff_pm+neg_aff_pmc_lag)+(1+neg_aff_pm+neg_aff_pmc_lag|ppID)+(1+neg_aff_pm+neg_aff_pmc_lag|study)',
-      "rs3" = 'm_f*(neg_aff_pm+neg_aff_pmc_lag)+(1+neg_aff_pm+neg_aff_pmc_lag|ppID)+(1+m_f+neg_aff_pm+neg_aff_pmc_lag|study)')
+# formula <- switch(name,
+#       "ri"  = 'm_f*(neg_aff_pm+neg_aff_pmc_lag)+(1|ppID)+(1|study)',
+#       "rs1" = 'm_f*(neg_aff_pm+neg_aff_pmc_lag)+(1+neg_aff_pm+neg_aff_pmc_lag|ppID)+(1|study)',
+#       "rs2" = 'm_f*(neg_aff_pm+neg_aff_pmc_lag)+(1+neg_aff_pm+neg_aff_pmc_lag|ppID)+(1+neg_aff_pm+neg_aff_pmc_lag|study)',
+#       "rs3" = 'm_f*(neg_aff_pm+neg_aff_pmc_lag)+(1+neg_aff_pm+neg_aff_pmc_lag|ppID)+(1+m_f+neg_aff_pm+neg_aff_pmc_lag|study)')
 
 
 # create formula

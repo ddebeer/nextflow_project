@@ -12,9 +12,9 @@ name <- c("ri", paste0("rs", 1:3))[c(grepl(pattern = "fit_ri", fit_path, fixed =
                                      grepl(pattern = "fit_rs2", fit_path, fixed = TRUE),
                                      grepl(pattern = "fit_rs3", fit_path, fixed = TRUE))]
 
-threshold <- c(25, 50, 75)[c(grepl(pattern = "bin_25_", fit_path, fixed = TRUE),
-                             grepl(pattern = "bin_50_", fit_path, fixed = TRUE),
-                             grepl(pattern = "bin_75_", fit_path, fixed = TRUE))]
+threshold <- c(25, 50, 75)[c(grepl(pattern = "bin_25", fit_path, fixed = TRUE),
+                             grepl(pattern = "bin_50", fit_path, fixed = TRUE),
+                             grepl(pattern = "bin_75", fit_path, fixed = TRUE))]
 
 
 # read the model
@@ -23,11 +23,11 @@ fit <- readRDS(fit_path)
 if(inherits(fit, "merMod")) {
   tryCatch(
     {
-      check <- performance::check_model(fit)
-      ggplot2::ggsave(paste0("bin_", threshold, "fit_", name, ".pdf"),
-                      check,
-                      width = 10,
-                      height = 15,
-                      dpi = 300)},
-    error = function(e) NULL)
+      check <- performance::check_model(fit, residual_type = "normal")
+      pdf(paste0("bin_", threshold, "fit_", name, ".pdf"),
+          width = 10,
+          height = 15)
+      print(check)
+      dev.off()},
+      error = function(e) NULL)
 }
