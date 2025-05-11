@@ -38,12 +38,12 @@ workflow {
     def input_esm = preprocess.out
                               .map{ files -> file(files[0])}
                               .collect()
-                              .view()
+                              .map{ string -> "'" + string + "'"}
 
     def input_pp = preprocess.out
                              .map{ files -> file(files[1])}
                              .collect()
-                             .view()
+                             .map{ string -> "'" + string + "'"}
 
     combine_esm("esm", input_esm)
     combine_pp("pp", input_pp)
@@ -52,13 +52,12 @@ workflow {
     def models = Channel.fromPath(params.modelsfile, checkIfExists:true)
                         .splitCsv(header:true)
 
-    def input_analyses = combine_pp.out
+    def input_analyses = combine_esm.out
                                    .combine(models)
                                    .combine(channel.of(25, 50, 75))
                                    .map { entry -> tuple(file(entry[0]), entry[1].name, entry[1].formula, entry[2]) }
-                                   .view()
 
-    //analysis_check(input_analyses)
+    analysis_check(input_analyses)
 
 
 

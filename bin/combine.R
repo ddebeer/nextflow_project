@@ -18,11 +18,11 @@ datasets <- gsub("]", "", datasets, fixed = TRUE)
 datasets <- unlist(strsplit(datasets, split = ", ", fixed = TRUE))
 datasets <- gsub(",", "", datasets, fixed = TRUE)
 
-print(datasets)
+# print(datasets)
 
 # esm data
 if(type == "esm"){
-  data_esm<- do.call(rbind, lapply(datasets, function(file){
+  data_esm <- do.call(rbind, lapply(datasets, function(file){
     #browser()
     data <- readRDS(file)
 

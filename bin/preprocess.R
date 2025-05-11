@@ -15,5 +15,5 @@ data <- read.csv(input_path)
 source(source_file)
 
 # save data
-saveRDS(data_pp, "data_pp.RDS")
-saveRDS(data, "data_esm.RDS")
+saveRDS(data_pp, paste0(dataset, "data_pp.RDS"))
+saveRDS(data, paste0(dataset, "data_esm.RDS"))
