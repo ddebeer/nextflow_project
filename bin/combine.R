@@ -8,9 +8,9 @@ args <- commandArgs(trailingOnly=TRUE)
 type <- args[1]
 datasets <- args[2]
 
-print(datasets)
+#print(datasets)
 
-print("\n")
+#print("\n")
 
 # preprocess datasets
 datasets <- gsub("[", "", datasets, fixed = TRUE)
@@ -22,7 +22,7 @@ print(datasets)
 
 # esm data
 if(type == "esm"){
-  data <- do.call(rbind, lapply(datasets, function(file){
+  data_esm<- do.call(rbind, lapply(datasets, function(file){
     #browser()
     data <- readRDS(file)
 
@@ -52,14 +52,14 @@ if(type == "esm"){
 
     # check if type is binary
     if(all(data$type == "binary")) {
-      print(file)
+      #print(file)
       data$er_b <- NA
     }
 
 
     # check
     if(any(data$er_b >= 1, na.rm = TRUE)) {
-      browser()
+      #browser()
     }
 
 
@@ -70,11 +70,11 @@ if(type == "esm"){
              anger_pm, anger_pmc, anger_pmc_lag, has_anger,
              sad_pm, sad_pmc, sad_pmc_lag, has_sad,
              ppID, study, type)
-    print("OK")
+    #print("OK")
     data
   }))
 
-  saveRDS(data, "data_esm.RDS")
+  saveRDS(data_esm, "data_esm_all.RDS")
 } else if(type == "pp"){
   # person level data
   data_pp <- do.call(rbind, lapply(datasets, function(file){
@@ -117,11 +117,11 @@ if(type == "esm"){
              anger_pm, has_anger,
              sad_pm, has_sad,
              ppID, study, type)
-    print("OK")
+    #print("OK")
     data
   }))
 
-  saveRDS(data_pp, "data_pp.RDS")
+  saveRDS(data_pp, "data_pp_all.RDS")
 
 } else {
   saveRDS("test", "test.RDS")
